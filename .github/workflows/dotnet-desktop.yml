@@ -31,11 +31,11 @@ jobs:
 
       # Step 4: Build only the TestNinja.UnitTests project
       - name: Build unit test project
-        run: dotnet build ../TestNinja.UnitTests/TestNinja.UnitTests.csproj --configuration Release
+        run: dotnet build ./TestNinja.UnitTests/TestNinja.UnitTests.csproj --configuration Release
 
       # Step 5: Run NUnit tests for the specific project
       - name: Run tests for TestNinja.UnitTests
-        run: dotnet test ../TestNinja.UnitTests/TestNinja.UnitTests.csproj --configuration Release --collect:"XPlat Code Coverage"
+        run: dotnet test ./TestNinja.UnitTests/TestNinja.UnitTests.csproj --configuration Release --collect:"XPlat Code Coverage"
 
       # Step 6: Upload code coverage report to Codacy
       - name: Upload code coverage to Codacy
