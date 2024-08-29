@@ -11,6 +11,7 @@ namespace TestNinja.UnitTests
             var logger = new ErrorLogger();
             // 
             //
+            //
             logger.Log("a");
 
             Assert.That(logger.LastError, Is.EqualTo("a"));
