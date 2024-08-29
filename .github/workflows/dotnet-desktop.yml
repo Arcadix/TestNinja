@@ -2,6 +2,9 @@ name: Test Runner For Code Coverage
 
 on:
   # Trigger the workflow when a pull request is opened, synchronized (updated), or reopened
+  push:
+    branches:
+      - 'main'
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
