@@ -9,7 +9,7 @@ namespace TestNinja.UnitTests
         public void Log_WhenCalled_SetTheLastErrorProperty()
         {
             var logger = new ErrorLogger();
-
+            // 
             logger.Log("a");
 
             Assert.That(logger.LastError, Is.EqualTo("a"));
