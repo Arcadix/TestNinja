@@ -1,0 +1,41 @@
+name: Test Runner For Code Coverage
+
+on:
+  # Trigger the workflow when a pull request is opened, synchronized (updated), or reopened
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - 'main'
+
+jobs:
+  test-and-upload-coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up .NET environment (since you are using NUnit)
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6' # Adjust according to your .NET version
+
+      # Step 3: Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # Step 4: Build only the TestNinja.UnitTests project
+      - name: Build unit test project
+        run: dotnet build ../TestNinja.UnitTests.csproj --configuration Release
+
+      # Step 5: Run NUnit tests for the specific project
+      - name: Run tests for TestNinja.UnitTests
+        run: dotnet test ../TestNinja.UnitTests/TestNinja.UnitTests.csproj --configuration Release --collect:"XPlat Code Coverage"
+
+      # Step 6: Upload code coverage report to Codacy
+      - name: Upload code coverage to Codacy
+        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r $(find . -name 'coverage.cobertura.xml')
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_CODE_COVERAGE_TOKEN }}
