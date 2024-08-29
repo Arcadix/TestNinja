@@ -41,4 +41,4 @@ jobs:
       - name: Upload code coverage to Codacy
         run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r $(find . -name 'coverage.cobertura.xml')
         env:
-          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_CODE_COVERAGE_TOKEN }}
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_TESTNINJA_REPO_TOKEN }}
