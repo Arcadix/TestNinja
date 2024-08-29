@@ -1,0 +1,9 @@
+# Ignore bin and obj folders
+**/bin/
+**/obj/
+**.vs/
+.vs/
+
+# Other files and folders to ignore
+*.log
+*.tmp
